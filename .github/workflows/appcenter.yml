@@ -39,7 +39,6 @@ jobs:
             echo "$list"
             appcenter login --token $APPCENTER_API_TOKEN
             appcenter build queue --app "siddharthnair2022-gmail.com/Android-Sample" --branch "master" --debug
-            appcenter build wait
             
     - name: Download APK artifact  
       run: |
