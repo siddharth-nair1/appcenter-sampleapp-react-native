@@ -35,7 +35,7 @@ jobs:
 
     - name: Build Android App
       env:
-        APP_NAME: siddharthnair2022-gmail.com/Android-Sample
+        APP_NAME: "siddharthnair2022-gmail.com/Android-Sample"
       run: |
         list=$(appcenter apps list)
         echo "$list"
