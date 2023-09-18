@@ -1,7 +1,7 @@
 name: Build Android App
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -32,7 +32,6 @@ jobs:
           appcenter --version
           list=$(appcenter apps list)
           echo "$list"
-      
 
     - name: Build Android App
       env:
@@ -40,8 +39,8 @@ jobs:
       run: |
         list=$(appcenter apps list)
         echo "$list"
-        appcenter build queue --app ${{ env.APP_NAME }} --branch ${{ github.ref }} --quiet
-        appcenter build wait --app ${{ env.APP_NAME }}
+        appcenter build queue --app $APP_NAME --branch ${{ github.ref }} --quiet
+        appcenter build wait --app $APP_NAME
 
     - name: Download and Log build artifacts
       run: |
