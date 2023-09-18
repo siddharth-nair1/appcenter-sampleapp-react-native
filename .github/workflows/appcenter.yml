@@ -32,7 +32,7 @@ jobs:
 
     - name: Build Android App
       run: |
-        appcenter build queue --app $APP_NAME --branch ${{ github.ref }} --quiet
+        appcenter build queue --app $APP_NAME --branch "master" --quiet
         appcenter build wait --app $APP_NAME
 
     - name: Download APK artifact  
