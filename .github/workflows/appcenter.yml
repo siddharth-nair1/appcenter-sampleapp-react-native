@@ -38,7 +38,7 @@ jobs:
             list=$(appcenter apps list)
             echo "$list"
             appcenter login --token $APPCENTER_API_TOKEN
-            appcenter build queue --app "siddharthnair2022-gmail.com/Android-Sample" --branch ${{ github.ref }} --debug
+            appcenter build queue --app "siddharthnair2022-gmail.com/Android-Sample" --branch "main" --debug
             appcenter build wait --app $APP_NAME
 
     - name: Download APK artifact  
