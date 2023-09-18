@@ -1,48 +1,41 @@
-name: Build Android App
+name: Build Android App 
 
 on:
   workflow_dispatch:
 
 jobs:
+
   build:
+
     runs-on: ubuntu-latest
+    
+    env:
+      APP_NAME: "siddharthnair2022-gmail.com/Android-Sample"
 
     steps:
+
     - name: Checkout Code
       uses: actions/checkout@v2
-    
+
     - name: Install Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'  # Use a valid Node.js version
+        node-version: '18'
 
     - name: Install App Center CLI
       run: npm install -g appcenter-cli
 
-    - name: Set up App Center authentication
+    - name: Login to App Center
       env:
         APPCENTER_API_TOKEN: ${{ secrets.APPCENTER_API_TOKEN }}
-      run: |
-        appcenter login --token $APPCENTER_API_TOKEN
-
-    - name: Debug Info
-      run: |
-          echo "APP_NAME: $APP_NAME"
-          echo "GitHub Ref: ${{ github.ref }}"
-          appcenter --version
-          list=$(appcenter apps list)
-          echo "$list"
+      run: appcenter login --token $APPCENTER_API_TOKEN
 
     - name: Build Android App
-      env:
-        APP_NAME: "siddharthnair2022-gmail.com/Android-Sample"
       run: |
-        list=$(appcenter apps list)
-        echo "$list"
         appcenter build queue --app $APP_NAME --branch ${{ github.ref }} --quiet
         appcenter build wait --app $APP_NAME
 
-    - name: Download and Log build artifacts
+    - name: Download APK artifact  
       run: |
         appcenter build download --app $APP_NAME --file-filter "*.apk" --type build
         ls -al
