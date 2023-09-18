@@ -29,15 +29,15 @@ jobs:
 
     - name: Login to App Center
       env:
-        APPCENTER_API_TOKEN: ${{ secrets.APPCENTER_API_TOKEN }}
+        APPCENTER_API_TOKEN: ${{ secrets.APPSPECIFIC_SECRET }}
       run: | 
-            appcenter login --token $APPCENTER_API_TOKEN
+            appcenter login --token $APPSPECIFIC_SECRET
             echo "APP_NAME: $APP_NAME"
             echo "GitHub Ref: ${{ github.ref }}"
             appcenter --version
             list=$(appcenter apps list)
             echo "$list"
-            appcenter login --token $APPCENTER_API_TOKEN
+            appcenter login --token $APPSPECIFIC_SECRET
             appcenter build queue --app "siddharthnair2022-gmail.com/Android-Sample" --branch "main" --debug
             appcenter build wait --app $APP_NAME
 
