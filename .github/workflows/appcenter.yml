@@ -1,9 +1,7 @@
 name: Build Android App
 
 on:
-  push:
-    branches:
-      - main  # Adjust this branch name as needed
+    workflow_dispatch:
 
 jobs:
   build:
