@@ -25,6 +25,15 @@ jobs:
       run: |
         appcenter login --token $APPCENTER_API_TOKEN
 
+    - name: Debug Info
+      run: |
+            echo "APP_NAME: $APP_NAME"
+            echo "GitHub Ref: ${{ github.ref }}"
+            appcenter --version
+            list=$(appcenter apps list)
+            echo "$list"
+
+
     - name: Build Android App
       env:
         APP_NAME: siddharthnair2022-gmail.com/Android-Sample
